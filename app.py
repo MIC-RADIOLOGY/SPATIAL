@@ -6,22 +6,12 @@ st.title("🖐️ Gesture Controlled Spatial UI")
 
 html_path = Path("web/index.html")
 
+st.write("Checking file path:", html_path.resolve())
+
 if not html_path.exists():
     st.error("❌ ERROR: Missing web/index.html")
-    st.write("Your folder structure must be:")
-    st.write("""
-    gesture-streamlit-ui/
-      app.py
-      requirements.txt
-      web/
-        index.html
-        style.css
-        app.js
-        handtrack.js
-        gestures.js
-        ui.js
-    """)
+    st.write("Current working directory:", Path.cwd())
+    st.write("Directory contents:", list(Path.cwd().iterdir()))
 else:
     html_content = html_path.read_text()
     st.components.v1.html(html_content, height=800, scrolling=False)
-
